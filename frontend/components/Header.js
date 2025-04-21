@@ -1,8 +1,67 @@
 import React, { useState, useRef, useEffect } from 'react'
 import logo from '../assets/nasa-6.png';
-import '../styles/header.css';
+import styled from 'styled-components';
 
-console.log(logo);
+const StyledHeader = styled.div`
+  background-color: ${pr => pr.theme.black};
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // padding: 10px 20px;
+`
+
+const Logo = styled.div`
+  width: 100px;
+`
+
+const HeaderButtons = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+`
+
+const HeaderButton = styled.button`
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+  height: 100%;
+  background-color: ${pr => pr.theme.tertiaryColor};
+  color: ${pr => pr.theme.white};
+`
+
+const ToggleButton = styled.button`
+  background-color: ${pr => pr.theme.white};
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+  height: 100%;
+`
+const DropdownContainer = styled.div`
+  position: relative;
+  height: 100%;
+`
+
+const DropdownMenu = styled.div`
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+  z-index: 10;
+`
+
+const DropdownItem = styled.button`
+  background-color: ${pr => pr.theme.white};
+  margin: 5px;
+
+  &:hover {
+    background-color: ${pr => pr.theme.secondaryColor};
+    color: ${pr => pr.theme.white};
+  }
+`
 
 function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -26,26 +85,25 @@ function Header() {
   }, [])
 
   return (
-    <header className='header'>
-      <div className='logo'>
+    <StyledHeader>
+      <Logo>
         <img src={logo} alt='Nasa Logo'/>
-      </div>
+      </Logo>
 
-      <div className='header-buttons'>
-        <button className='header-button'>Button 1</button>
-        <div className='dropdown-container' ref={dropdownRef}>
-          <button className='header-button dropdown-toggle' onClick={handleDropdownToggle}>Dropdown</button>
+      <HeaderButtons>
+        <HeaderButton>Button 1</HeaderButton>
+        <DropdownContainer ref={dropdownRef}>
+          <ToggleButton onClick={handleDropdownToggle}>Dropdown</ToggleButton>
           {isDropdownOpen && (
-            <div className='dropdown-menu'>
-              <button className='dropdown-item'>Option 1</button>
-              <button className='dropdown-item'>Option 2</button>
-              <button className='dropdown-item'>Option 3</button>
-            </div>
+            <DropdownMenu>
+              <DropdownItem>Option 1</DropdownItem>
+              <DropdownItem>Option 2</DropdownItem>
+              <DropdownItem>Option 3</DropdownItem>
+            </DropdownMenu>
           )}
-        </div>
-      </div>
-
-    </header>
+        </DropdownContainer>
+      </HeaderButtons>
+    </StyledHeader>
   )
 }
 

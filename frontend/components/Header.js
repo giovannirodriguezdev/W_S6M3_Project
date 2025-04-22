@@ -13,6 +13,7 @@ const StyledHeader = styled.div`
 
 const Logo = styled.div`
   width: 100px;
+  margin: 5px 40px;
 `
 
 const HeaderButtons = styled.div`
@@ -28,6 +29,11 @@ const HeaderButton = styled.button`
   height: 100%;
   background-color: ${pr => pr.theme.tertiaryColor};
   color: ${pr => pr.theme.white};
+
+  &:hover {
+    background-color: ${pr => pr.theme.white};
+    color: ${pr => pr.theme.tertiaryColor};
+  }
 `
 
 const ToggleButton = styled.button`
@@ -36,6 +42,11 @@ const ToggleButton = styled.button`
   border: none;
   cursor: pointer;
   height: 100%;
+
+  &:hover {
+    background-color: ${pr => pr.theme.primaryColor};
+    color: ${pr => pr.theme.white};
+  }
 `
 const DropdownContainer = styled.div`
   position: relative;
